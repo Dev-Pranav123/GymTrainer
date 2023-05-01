@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "791640226514",
+    "firebase_url": "https://gymt-b9fe8-default-rtdb.firebaseio.com",
+    "project_id": "gymt-b9fe8",
+    "storage_bucket": "gymt-b9fe8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791640226514:android:cd2d5ba836978a7a358b0b",
+        "android_client_info": {
+          "package_name": "com.prankelkar.GymTrainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791640226514-po2ngf0l8rt2skb6n07inp6vhgphgos1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIcWyKHJqYaVyyVwQ0ESBjd69CaTdmwp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791640226514-po2ngf0l8rt2skb6n07inp6vhgphgos1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
