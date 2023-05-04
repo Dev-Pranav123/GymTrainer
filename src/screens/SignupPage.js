@@ -1,13 +1,34 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import Background from "./Background";
 import Fields from "./Fields";
 import Button from "./Button";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase.config"
+import { auth } from "../../firebase/firebase.config";
+import { getDatabase, ref, set } from "firebase/database";
+
 
 
 const SignupPage = props => {
+    const database = getDatabase();
+    constructor(props)
+    {
+
+        this.state = {
+            firstName: 'Pranav1234656',
+            lastName: 'Kelkar',
+            contactNumber: '1234561234'
+        }
+    }
+    Insert = () => {
+        const db = getDatabase();
+        set(ref(db, 'users/' + this.state.contactNumber), {
+
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+        });
+    }
+
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -78,7 +99,7 @@ const SignupPage = props => {
                         <Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 13 }}> Terms & Conditions</Text>
                     </View>
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Signup" Press={() => {
-                        signup()
+                        Insert()
                         props.navigation.navigate("LoginPage")
                     }} />
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>

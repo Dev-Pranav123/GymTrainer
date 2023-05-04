@@ -14,7 +14,8 @@ const LoginPage = props => {
     const login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                alert("Logged into the screen");
+                props.navigation.navigate("WelcomePage");
+                // alert("Logged into the screen");
             })
             .catch((error) => {
                 const errorCode = error.code;
