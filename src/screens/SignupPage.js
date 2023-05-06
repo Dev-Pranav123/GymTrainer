@@ -57,12 +57,6 @@ const SignupPage = props => {
                     backgroundColor: "white", height: 700, width: 380, borderTopLeftRadius: 100,
                     paddingTop: 20, alignItems: 'center'
                 }}>
-                    {/* <Fields placeholder="First Name" />
-                    <Fields placeholder="Last Name" />
-                    <Fields placeholder="Email address" keyboardType={"email-address"} />
-                    <Fields placeholder="Contact Number" keyboardType={"numeric"} />
-                    <Fields placeholder="Password" secureTextEntry={true} />
-                    <Fields placeholder="Confirm Password" secureTextEntry={true} /> */}
                     <TextInput placeholder="First Name" style={{
                         borderRadius: 100, color: 'orange', paddingHorizontal: 10,
                         width: '80%', backgroundColor: 'rgb(220,220,220)',

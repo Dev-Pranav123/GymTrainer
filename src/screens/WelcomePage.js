@@ -14,7 +14,7 @@ const WelcomePage = props => {
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Add Candidate" Press={() =>
                         props?.navigation?.navigate("NewCandidate")} />
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Candidate List" Press={() =>
-                        login()} />
+                        props?.navigation?.navigate("CandidateList")} />
                 </View>
             </View>
         </WelcomeBackground>
