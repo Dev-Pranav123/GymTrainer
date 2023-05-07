@@ -5,7 +5,7 @@ import Button from "./Button";
 import { getDatabase, ref, set } from "firebase/database";
 import { showMessage } from "react-native-flash-message";
 
-const NewCandidate = () => {
+const NewCandidate = props => {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [emailAddress, setEmailAddress] = useState(null);
@@ -14,8 +14,8 @@ const NewCandidate = () => {
     const [dateOfJoining, setDateOfJoining] = useState(null);
 
     AddCandidate = (firstName, lastName, emailAddress, contactNumber, feesPaid, dateOfJoining) => {
-        const db = getDatabase();
-        set(ref(db, 'candidates/' + contactNumber), {
+        const db = getDatabase(); 
+        set(ref(db, 'candidates/' + props?.route?.params?.userCredentials + contactNumber), {
 
             firstName: firstName,
             lastName: lastName,
@@ -30,7 +30,8 @@ const NewCandidate = () => {
             description: "You can check the added candidate in the Candidate List",
             type: "success",
             position: "center",
-            backgroundColor: "orange"
+            backgroundColor: "orange",
+            animationDuration: 900
         });
 
         this.firstName.clear();

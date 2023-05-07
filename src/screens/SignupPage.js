@@ -33,9 +33,9 @@ const SignupPage = props => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
-    const signup = () => {
-        createUserWithEmailAndPassword(auth, 'prahsnat@gmail.com', '123465')
-            .then((userCredential) => {
+    const signup = (email, password) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => { 
                 // Signed in 
                 alert("User created successfully");
                 // ...
@@ -57,43 +57,22 @@ const SignupPage = props => {
                     backgroundColor: "white", height: 700, width: 380, borderTopLeftRadius: 100,
                     paddingTop: 20, alignItems: 'center'
                 }}>
-                    <TextInput placeholder="First Name" style={{
-                        borderRadius: 100, color: 'orange', paddingHorizontal: 10,
-                        width: '80%', backgroundColor: 'rgb(220,220,220)',
-                        height: 45, marginVertical: 20
-                    }} />
-                    <TextInput placeholder="Last Name" style={{
-                        borderRadius: 100, color: 'orange', paddingHorizontal: 10,
-                        width: '80%', backgroundColor: 'rgb(220,220,220)',
-                        height: 45, marginVertical: 20
-                    }} />
                     <TextInput placeholder="Email address" style={{
                         borderRadius: 100, color: 'orange', paddingHorizontal: 10,
                         width: '80%', backgroundColor: 'rgb(220,220,220)',
                         height: 45, marginVertical: 20
-                    }} keyboardType={"email-address"} />
-                    <TextInput placeholder="Contact Number" style={{
-                        borderRadius: 100, color: 'orange', paddingHorizontal: 10,
-                        width: '80%', backgroundColor: 'rgb(220,220,220)',
-                        height: 45, marginVertical: 20
-                    }} keyboardType={"numeric"} />
+                    }} keyboardType={"email-address"} onChangeText={(emailAddress) => setEmail(emailAddress)} />
                     <TextInput placeholder="Password" style={{
                         borderRadius: 100, color: 'orange', paddingHorizontal: 10,
                         width: '80%', backgroundColor: 'rgb(220,220,220)',
                         height: 45, marginVertical: 20
-                    }} secureTextEntry={true} />
-                    <TextInput placeholder="Confirm Password" style={{
-                        borderRadius: 100, color: 'orange', paddingHorizontal: 10,
-                        width: '80%', backgroundColor: 'rgb(220,220,220)',
-                        height: 45, marginVertical: 20
-                    }} secureTextEntry={true} />
-
+                    }} secureTextEntry={true} onChangeText={(password) => setPassword(password)} />
                     <View style={{ display: 'flex', flexDirection: 'row', width: '78%', paddingRight: 16 }}>
                         <Text style={{ color: 'grey', fontWeight: 'bold', fontSize: 13 }}>By Signing in you agree to our</Text>
                         <Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 13 }}> Terms & Conditions</Text>
                     </View>
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Signup" Press={() => {
-                        Insert()
+                        signup(email, password)
                         props.navigation.navigate("LoginPage")
                     }} />
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>

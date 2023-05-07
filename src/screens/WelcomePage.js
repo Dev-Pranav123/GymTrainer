@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import WelcomeBackground from "./WelcomeBackground";
 import Button from "./Button";
 
-const WelcomePage = props => {
+const WelcomePage = props => {   
     return (
         <WelcomeBackground>
             <View >
@@ -12,9 +12,13 @@ const WelcomePage = props => {
                     paddingTop: 100, alignItems: 'center'
                 }}>
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Add Candidate" Press={() =>
-                        props?.navigation?.navigate("NewCandidate")} />
+                        props?.navigation?.navigate("NewCandidate", {
+                            userCredentials: props?.route?.params?.userCredential
+                        })} />
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Candidate List" Press={() =>
-                        props?.navigation?.navigate("CandidateList")} />
+                        props?.navigation?.navigate("CandidateList", {
+                            userCredentials: props?.route?.params?.userCredential
+                        })} />
                 </View>
             </View>
         </WelcomeBackground>
