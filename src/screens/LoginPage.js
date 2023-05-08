@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import Background from "./Background";
-import Fields from "./Fields";
 import Button from "./Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config"
 
 
@@ -13,16 +12,34 @@ const LoginPage = props => {
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => { 
-                props.navigation.navigate("WelcomePage",{
-                    userCredential:userCredential.user.uid
-                }); 
+            .then((userCredential) => {
+                props.navigation.navigate("WelcomePage", {
+                    userCredential: userCredential.user.uid
+                });
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 alert(errorMessage);
             });
+    }
+
+    const resetPassword = (email) => {
+        if (email != null) {
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert("Password reset email has been sent successfully!!!");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                    alert(errorMessage);
+                });
+        }
+        else {
+            alert("Please enter a valid email");
+        }
     }
     return (
         <Background>
@@ -34,10 +51,9 @@ const LoginPage = props => {
                 }}>
                     <Text style={{ fontSize: 40, fontWeight: "bold", color: "orange" }}>Welcome back</Text>
                     <Text style={{ color: 'grey', fontSize: 19, fontWeight: 'bold', marginBottom: 20 }}>Login to your account</Text>
-                    {/* <Fields placeholder="Email/userName" keyboardType={"email-address"} />
-                    <Fields placeholder="Password" secureTextEntry={true} /> */}
 
-                    <TextInput placeholder="Email/userName" style={{
+
+                    <TextInput placeholder="Email / User Name" style={{
                         borderRadius: 100, color: 'orange', paddingHorizontal: 10,
                         width: '80%', backgroundColor: 'rgb(220,220,220)',
                         height: 45, marginVertical: 20
@@ -53,7 +69,8 @@ const LoginPage = props => {
 
 
                     <View style={{ alignItems: 'flex-end', width: '78%', paddingRight: 16, marginBottom: 120 }}>
-                        <Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 16 }}>Forgot Password?</Text>
+                        <TouchableOpacity
+                            onPress={() => resetPassword(email)}><Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 16 }}>Forgot Password?</Text></TouchableOpacity>
                     </View>
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Login" Press={() =>
                         login()} />

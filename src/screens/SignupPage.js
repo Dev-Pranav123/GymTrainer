@@ -67,10 +67,10 @@ const SignupPage = props => {
                         width: '80%', backgroundColor: 'rgb(220,220,220)',
                         height: 45, marginVertical: 20
                     }} secureTextEntry={true} onChangeText={(password) => setPassword(password)} />
-                    <View style={{ display: 'flex', flexDirection: 'row', width: '78%', paddingRight: 16 }}>
+                    {/* <View style={{ display: 'flex', flexDirection: 'row', width: '78%', paddingRight: 16 }}>
                         <Text style={{ color: 'grey', fontWeight: 'bold', fontSize: 13 }}>By Signing in you agree to our</Text>
                         <Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 13 }}> Terms & Conditions</Text>
-                    </View>
+                    </View> */}
                     <Button textColor="orange" bgColor="rgb(220,220,220)" btnLabel="Signup" Press={() => {
                         signup(email, password)
                         props.navigation.navigate("LoginPage")

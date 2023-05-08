@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import WelcomeBackground from "./WelcomeBackground";
 import Button from "./Button";
 
-const WelcomePage = props => {   
+const WelcomePage = props => {
     return (
         <WelcomeBackground>
             <View >

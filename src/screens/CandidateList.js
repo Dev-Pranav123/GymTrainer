@@ -8,14 +8,20 @@ const CandidateList = props => {
     useEffect(() => {
         const startCountRef = ref(db, "candidates/");
         onValue(startCountRef, (snapshot) => {
+            if(snapshot.val())
+            {
+
+            
             const data = snapshot.val();
-            const filteredDataByUserId = Object.fromEntries(Object.entries(data).filter(([key]) => key.includes(props?.route?.params?.userCredentials)));
-            if (filteredDataByUserId != null) {
-                const candidates = Object.keys(filteredDataByUserId).map(key => ({
-                    id: key,
-                    ...data[key]
-                }));
-                setCandidateList(candidates);
+            const filteredDataByUserId = data ? Object.fromEntries(Object.entries(data)?.filter(([key]) => key?.includes(props?.route?.params?.userCredentials))) : null;
+       
+                if (filteredDataByUserId != null) {
+                    const candidates = Object.keys(filteredDataByUserId)?.map(key => ({
+                        id: key,
+                        ...data[key]
+                    }));
+                    setCandidateList(candidates);
+                }
             }
         });
     }, [])
@@ -25,17 +31,18 @@ const CandidateList = props => {
             <ImageBackground source={require("../../assets/candidaeListPage.jpg")}
                 style={{ height: '100%' }}
             >
-                <Text style={styles.infoBar}> Number of candidates present {candidateList.length}</Text>
+                <Text style={styles.infoBar}> Number of candidates present {candidateList?.length}</Text>
                 <ScrollView>
                     {
-                        candidateList.map((item, index) => {
+                        candidateList?.map((item, index) => {
                             return (
                                 <View key={index}>
                                     <Text style={styles.item}>
                                         <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Contact no. </Text>:{item?.contactNumber}  {"\n"}
-                                        <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   First Name </Text>: {item?.firstName} {item?.lastName}{"\n"}
+                                        <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Name </Text>: {item?.candidateName} {"\n"}
                                         <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Fees Paid </Text> :  Rs. {item?.feesPaid} {"\n"}
-                                        <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Date Of Joining </Text>: {item?.dateOfJoining}
+                                        <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Date Of Joining </Text>: {item?.dateOfJoining} {"\n"}
+                                        <Text style={{ color: "blue", fontWeight: "bold", marginTop: 20 }}>   Time Slot </Text> :  {item?.timeSlot}
                                     </Text>
                                 </View>
                             )

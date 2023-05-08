@@ -1,10 +1,11 @@
 import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 
-export default function Button({ bgColor, btnLabel, textColor, Press }) {
+export default function Button({ bgColor, btnLabel, textColor, Press, disabledButton }) {
     return (
         <View>
             <TouchableOpacity
+            disabled = {disabledButton}
                 onPress={Press}
                 style={{
                     backgroundColor: bgColor,
